@@ -2,6 +2,9 @@
 
 This is a simple proxy for Laravel Forge deployment notifications to MatterMost.
 
+### Installation
+Set `MATTERMOST_HOST=` to point to your MatterMost instance.
+
 ### Usage
 Point your Forge deployment notification to the URL of this script
 ```
