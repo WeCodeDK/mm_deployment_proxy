@@ -24,6 +24,8 @@ class MatterMostController extends Controller
     private function getPayload(array $requestData, string $channelName): array
     {
         return [
+            'username' => 'Laravel Forge',
+            'icon_url' => 'https://forge.laravel.com/favicon-16x16.png',
             'channel' => $channelName,
             'attachments' => [
                 [
