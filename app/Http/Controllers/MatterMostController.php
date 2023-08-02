@@ -28,7 +28,7 @@ class MatterMostController extends Controller
 
         return [
             'username' => 'Forge',
-            'icon_url' => 'https://forge.laravel.com/favicon-16x16.png',
+            'icon_url' => 'https://forge.laravel.com/favicon.ico',
             'channel' => $channelName,
             'attachments' => [
                 [
@@ -59,7 +59,7 @@ class MatterMostController extends Controller
                         ],
                     ],
                     'footer' => 'Laravel Forge Deployment',
-                    'footer_icon' => 'https://forge.laravel.com/favicon-16x16.png',
+                    'footer_icon' => 'https://forge.laravel.com/favicon.ico',
                     'ts' => now()->timestamp,
                 ],
             ],
