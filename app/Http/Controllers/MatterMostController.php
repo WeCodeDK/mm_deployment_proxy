@@ -23,15 +23,18 @@ class MatterMostController extends Controller
      */
     private function getPayload(array $requestData, string $channelName): array
     {
+        $title = $requestData['status'] === 'success' ? 'Success: ' : 'Failed: ';
+        $title .= $requestData['server']['name'] . ' - ' . $requestData['site']['name'];
+
         return [
-            'username' => 'Laravel Forge',
+            'username' => 'Forge',
             'icon_url' => 'https://forge.laravel.com/favicon-16x16.png',
             'channel' => $channelName,
             'attachments' => [
                 [
-                    'fallback' => $requestData['status'] === 'success' ? 'New deployment' : 'Deployment failed',
+                    'fallback' => $title,
                     'color' => $requestData['status'] === 'success' ? 'good' : 'danger',
-                    'pretext' => $requestData['status'] === 'success' ? 'New deployment' : 'Deployment failed',
+                    'pretext' => $title,
                     'author_name' => $requestData['commit_author'],
                     'author_link' => $requestData['commit_url'],
                     'author_icon' => 'https://github.githubassets.com/favicon.ico',
