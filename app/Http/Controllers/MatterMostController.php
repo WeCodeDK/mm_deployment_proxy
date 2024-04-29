@@ -26,6 +26,9 @@ class MatterMostController extends Controller
         $title = $requestData['status'] === 'success' ? 'Success: ' : 'Failed: ';
         $title .= $requestData['server']['name'] . ' - ' . $requestData['site']['name'];
 
+        $serverUrl = 'https://forge.laravel.com/servers/' . $requestData['server']['id'];
+        $siteUrl = $serverUrl . '/sites/' . $requestData['site']['id'];
+
         return [
             'username' => 'Forge',
             'icon_url' => 'https://forge.laravel.com/favicon.ico',
@@ -44,12 +47,17 @@ class MatterMostController extends Controller
                     'fields' => [
                         [
                             'title' => 'Server',
-                            'value' => $requestData['server']['name'],
+                            'value' => '[' . $requestData['server']['name'] . '](' . $serverUrl . ')',
                             'short' => true,
                         ],
                         [
                             'title' => 'Site',
-                            'value' => '[' . $requestData['site']['name'] . '](https://' . $requestData['site']['name'] . ')',
+                            'value' => '[' . $requestData['site']['name'] . '](' . $siteUrl . ')',
+                            'short' => true,
+                        ],
+                        [
+                            'title' => 'Site URL',
+                            'value' => '[https://' . $requestData['site']['name'] . '](https://' . $requestData['site']['name'] . ')',
                             'short' => true,
                         ],
                         [
