@@ -26,6 +26,8 @@ class MatterMostController extends Controller
         $title = $requestData['status'] === 'success' ? 'Success: ' : 'Failed: ';
         $title .= $requestData['server']['name'] . ' - ' . $requestData['site']['name'];
 
+        info(json_encode($requestData));
+
         return [
             'username' => 'Forge',
             'icon_url' => 'https://forge.laravel.com/favicon.ico',
