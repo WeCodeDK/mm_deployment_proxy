@@ -49,7 +49,7 @@ class MatterMostController extends Controller
                         ],
                         [
                             'title' => 'Site',
-                            'value' => '[' . $requestData['site']['name'] . '](https://' . $requestData['site']['url'] . ')',
+                            'value' => '[' . $requestData['site']['name'] . '](https://' . $requestData['site']['name'] . ')',
                             'short' => true,
                         ],
                         [
