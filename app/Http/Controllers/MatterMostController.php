@@ -57,6 +57,11 @@ class MatterMostController extends Controller
                             'value' => $requestData['commit_hash'],
                             'short' => true,
                         ],
+                        [
+                            'title' => 'Commit message',
+                            'value' => $requestData['commit_message'],
+                            'short' => false,
+                        ]
                     ],
                     'footer' => 'Laravel Forge Deployment',
                     'footer_icon' => 'https://forge.laravel.com/favicon.ico',
