@@ -41,9 +41,9 @@ class MatterMostController extends Controller
                     'author_name' => $requestData['commit_author'],
                     'author_link' => $requestData['commit_url'],
                     'author_icon' => 'https://github.githubassets.com/favicon.ico',
-                    'title' => $requestData['commit_message'],
+                    'title' => 'Deployed to ' . $requestData['site']['name'],
                     'title_link' => $requestData['commit_url'],
-                    'text' => 'Deployed to ' . $requestData['site']['name'],
+                    'text' => $requestData['commit_message'],
                     'fields' => [
                         [
                             'title' => 'Server',
