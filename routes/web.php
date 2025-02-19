@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/{hookId}/{channelName}', [MatterMostController::class, 'proxy']);
+Route::post('/nas/{hookId}/{channelName}', [MatterMostController::class, 'nasProxy']);

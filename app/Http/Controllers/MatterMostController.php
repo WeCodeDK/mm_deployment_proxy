@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MatterMostProxyRequest;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class MatterMostController extends Controller
 {
@@ -12,6 +14,19 @@ class MatterMostController extends Controller
     {
         $host = config('services.mattermost.host');
         $url = "{$host}/hooks/{$hookId}";
+
+        return Http::post($url, $this->getPayload($request->validated(), $channelName));
+    }
+
+    public function nasProxy(Request $request, string $hookId, string $channelName): Response
+    {
+        $host = config('services.mattermost.host');
+        $url = "{$host}/hooks/{$hookId}";
+
+        Log::info('Mattermost request', [
+            'url' => $url,
+            'payload' => $request->all(),
+        ]);
 
         return Http::post($url, $this->getPayload($request->validated(), $channelName));
     }
