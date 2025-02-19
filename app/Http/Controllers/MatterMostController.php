@@ -28,7 +28,42 @@ class MatterMostController extends Controller
             'payload' => $request->all(),
         ]);
 
-        return Http::post($url, $this->getPayload($request->validated(), $channelName));
+        return Http::post($url, $this->getNasPayload($request->all(), $channelName));
+    }
+
+    private function getNasPayload(array $requestData, string $channelName)
+    {
+        return [
+            'username' => 'WeNas',
+            'icon_url' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfRtLCnCQOT6a3Znn1qU3HdtwX1QmjCpXp1A&s',
+            'channel' => $channelName,
+            'attachments' => [
+                [
+                    'fallback' => 'WeNas',
+                    'color' => 'good',
+                    'pretext' => 'WeNas',
+                    'author_name' => 'WeNas',
+                    'author_link' => 'https://192.168.10.75:5001/',
+                    'author_icon' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfRtLCnCQOT6a3Znn1qU3HdtwX1QmjCpXp1A&s',
+                    'title' => 'WeNas',
+                    'title_link' => 'https://192.168.10.75:5001/',
+                    'text' => $requestData['text'],
+                    'fields' => [
+                        [
+                            'title' => 'Message',
+                            'value' => $requestData['text'],
+                        ],
+                        [
+                            'title' => 'Payload',
+                            'value' => json_encode($requestData),
+                        ],
+                    ],
+                    'footer' => 'WeNas Message',
+                    'footer_icon' => 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAqVJREFUWEftlk1IVFEUx3/nzYxGmBVFYYVFbWzTKggXBWOQ48fCWZS4CdRRKcJNG2uR9ElRUBQRk19BtmgiJCUdDRQialGt26RQgrQJrBQcZ+adeoqU+mbeNM7gxru99/7/v3vOuedeYZWHrLI/awDLI9DfVoIhNYhkLzqKgegY5NxebDLS6iZS+AT0RNZrQ+Qmb7+2LAZ4FSwk7hoG9mUZ4CNi+CmtG18MMPBgD+K5A+wHtgP5kPFCnUappSzwzDrk8jyPdK0jMrsZlV243YeIazVoMeDKTFSkC3P6FOXNEXuApS59wa143PeT1EUE5D0wCZq4cAVB5Qcx8zKVDZ8WbFKr9HDHSdBH9umQN0RjfvImJtmwI7nerwnFezH27xlTAxjsPIea12xTYMgNjtW3pJseZ4APQQ/fXSGUKhuTWdQ8Tlljb/YAXrbvxs0wyl4bk3HMuJfyptHsAYTbK4DnQK6NyRQiYZQpZEkBqihx7aIi8DoZnHMKwh1XQc+nccIoalZT1tiTPkBfcD0el5Xfo2kAjAMl+AKf0wcYDBahc6254P8BZJBcowpv7Uz6AEOdNZjm4yRd0EwgbrWdC5QGrjiBJ6+BcPs94Iy9iPSi2m0/Z8YwPe+oqP2WPkB/dz7GTBiw3oGlY3auNfsaXjgZOM0njkC47TBinZJNNiJfiEkJlfVjTgZO8/YA4WABuB+CVtoKiAwQn/YvvGhOJqkVYf/dXFx529BYMeI6jeqRxH8BoxVf3aWVGC/snY/A/HW7DhwAdgI5ScSta+XHF7DqY8VjHmCo4yym3kpRbRQxvNZ3KsX1SZcJoVAOG38+TfDaLd8s0sOWWDUHm6KZAbC+YFFtxtSiP80jUWP56xUnRHn9UCbMLQ3nxyhTTgl01gBWPQK/AR8KxYePMbIVAAAAAElFTkSuQmCC',
+                    'ts' => now()->timestamp,
+                ],
+            ],
+        ];
     }
 
     /**
